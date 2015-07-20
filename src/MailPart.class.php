@@ -26,4 +26,9 @@ class MailPart {
     }
 
 
+    public function render (MailBody $body) {
+
+    }
+
+
 }

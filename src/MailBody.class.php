@@ -51,6 +51,11 @@ class MailBody {
     }
 
 
+    public function render () {
+
+    }
+
+
     public function send() {
 
     }
