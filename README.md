@@ -79,8 +79,10 @@ Subject: Some fancy mail subject
 ... followed by __one empty line__, and the *body-section*...
 ```
 <mailPart contentType="text/html">
+  ..content goes here..
 </mailPart>
-... more mail-parts
+
+..more mail-parts..
 ```
 ... where you define each part of your mail between <mailPart> and </mailPart>.
 
