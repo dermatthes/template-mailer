@@ -1,0 +1,85 @@
+From: sender@address.de
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: some Subject
+To: recipient@address.de
+
+This is some
+Content=0A---MultiLineContent=0A=C3=84=C3=9C=C3=96=C3=9F?=3D)(=
+/&%$=C2=A7"!=C2=B0^*+~-.,;:_< > |@\}{[]=0A=0A=0ALorem ipsum dolor sit
+amet,=
+ consectetur adipiscing elit. Nam lobortis faucibus egestas. Sed sit amet
+e=
+lit eleifend magna finibus lacinia ut ac felis. Fusce a ornare nisi.
+Pellen=
+tesque a leo id nunc lobortis venenatis non vitae nunc. Aliquam elementum,
+=
+libero quis volutpat dignissim, turpis tellus rhoncus nisi, eget accumsan
+n=
+unc dolor nec dolor. Vivamus lacinia nunc id libero convallis dapibus.
+Etia=
+m eu tristique augue. Integer cursus sollicitudin erat in bibendum. Donec
+u=
+llamcorper tincidunt mi at vulputate. Curabitur eu metus fringilla sem
+aliq=
+uet bibendum.=0A=0ASed nec molestie lacus. Nulla felis urna, tincidunt sit
+=
+amet elit sed, sagittis faucibus est. Mauris mollis nulla sit amet posuere
+=
+auctor. Nam justo magna, dignissim non ligula vel, sagittis blandit
+sapien.=
+ Suspendisse rutrum nunc congue nulla accumsan bibendum nec in justo.
+Vesti=
+bulum sodales lorem eros, nec pulvinar nulla pulvinar a. Maecenas nec
+lobor=
+tis ligula.=0A=0AUt urna erat, sodales id dolor a, lacinia porta tellus.
+Ve=
+stibulum ultricies viverra molestie. Phasellus eget massa id arcu suscipit
+=
+condimentum. Praesent vitae massa nisl. Mauris mauris tellus, luctus ut
+pel=
+lentesque fermentum, sollicitudin vitae sapien. Ut pulvinar, nibh eget
+moll=
+is vestibulum, lorem risus cursus ex, id sodales nunc erat vel diam. Nulla
+=
+purus enim, semper id laoreet vitae, aliquet vel diam. Duis molestie
+dignis=
+sim purus, id cursus odio fringilla nec. Curabitur vitae ipsum molestie,
+so=
+llicitudin erat eu, scelerisque neque. Aliquam quis scelerisque libero. Ut
+=
+a odio sit amet eros pharetra pharetra at sit amet lacus. Nullam feugiat
+ar=
+cu augue, at scelerisque elit posuere congue. Proin at commodo velit, et
+pu=
+lvinar purus.=0A=0APraesent quis iaculis lorem. Mauris blandit a velit in
+m=
+alesuada. Donec nec facilisis lacus. Nam sit amet ligula et sapien
+interdum=
+ facilisis. Sed tempus scelerisque nisl, a ultricies augue fringilla vel.
+N=
+unc pharetra vel nibh non auctor. Praesent sem purus, vulputate tristique
+d=
+iam et, interdum auctor dui. Nulla vitae sapien sed sapien dapibus
+ultrices=
+.=0A=0ASed suscipit maximus magna. Nunc maximus tincidunt augue vel
+malesua=
+da. Aliquam molestie leo leo, nec rutrum sem commodo vitae. Nulla a quam
+qu=
+is est viverra pellentesque non vulputate erat. Etiam sed erat facilisis
+ma=
+uris efficitur consequat. Sed ut felis bibendum, dapibus urna a, congue
+odi=
+o. Sed condimentum ante vitae ipsum hendrerit vulputate. Morbi egestas
+risu=
+s eu ligula viverra ornare. Vestibulum sed fringilla ex. Proin bibendum
+var=
+ius felis, ultrices scelerisque massa dapibus eu. Etiam luctus euismod
+cong=
+ue. Etiam blandit turpis vel mauris suscipit convallis. Pellentesque at
+con=
+dimentum lorem. Donec dignissim, erat sit amet aliquet faucibus, nisl
+nulla=
+ rutrum urna, non scelerisque ante libero ut quam. Sed eget porttitor
+nulla=
+.=0A=0A---MultiLineContentEnd=0A

@@ -1,0 +1,7 @@
+From: sender@address.de
+To: {= recipient}
+Subject: {= subject}
+Content-Type: text/html
+
+<h1>This is some Content</h1>
+{= content}

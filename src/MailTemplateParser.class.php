@@ -21,6 +21,8 @@ class MailTemplateParser {
 
     private $mTemplate = NULL;
 
+    private $mFixedBoundary = FALSE;
+
     public function __construct (TextTemplate $textTemplate=NULL) {
         if ($textTemplate === NULL)
             $textTemplate = new TextTemplate();
@@ -38,6 +40,14 @@ class MailTemplateParser {
         return $this;
     }
 
+    /**
+     * Unit - Testing only
+     *
+     *
+     */
+    public function __setFixedBoundary () {
+        $this->mFixedBoundary = TRUE;
+    }
 
 
     private function _parseHeader (MailBody $mailBody, $headerStr, $data) {
@@ -69,6 +79,8 @@ class MailTemplateParser {
                 continue;
 
             list ($origHeaderName, $headerValue) = explode(":", $line, 2);
+            $origHeaderName = trim($origHeaderName);
+            $headerValue = trim($headerValue);
             $ucHeaderName = strtoupper($origHeaderName);
             switch ($ucHeaderName) {
                 case "TO":
@@ -237,6 +249,8 @@ class MailTemplateParser {
         $this->_splitTemplate($template, $header, $body);
 
         $mail = new MailBody();
+        if ($this->mFixedBoundary)
+            $mail->__setFixedBoundary("--=_NextPart_000_UNIT_TESTING_BOUNDARY_000");
         $this->_parseHeader($mail,$header, $data);
         $this->_parseBody($mail, $body, $data);
         return $mail;

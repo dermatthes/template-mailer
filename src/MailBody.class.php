@@ -60,6 +60,15 @@ class MailBody {
             $this->setFrom($from);
     }
 
+    /**
+     * For Unit-Testing only: Set a fixed Boundary
+     *
+     * @param $boundary
+     */
+    public function __setFixedBoundary ($boundary) {
+        $this->mBoundary = $boundary;
+    }
+
 
     private function _escapeHeaderValue ($input) {
         $input = str_replace("\r\n", " ", $input);
@@ -255,7 +264,9 @@ class MailBody {
             throw new MailException("No mail part specified. You need to add at least one MailPart.");
 
 
-        if (count ($this->mParts) == 1 && $this->mContentType === NULL) {
+
+        if (count ($this->mParts) == 1 && ($this->mContentType === NULL || in_array(strtolower($this->mContentType), ["text/plain", "text/html"]))) {
+
             // Only one part - and no ContentType specified -> build single part Mail
             $partData = $this->mParts[0]->__getIntData();
 
