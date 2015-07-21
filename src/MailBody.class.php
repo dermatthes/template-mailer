@@ -292,8 +292,8 @@ class MailBody {
             $charset = $partData["charset"];
             $contentTransferEncoding = $partData["contentTransferEncoding"];
             $content = $partData["content"];
-            $this->_extendHeader($headers, "Content-Type", "$contentType; charset=$charset");
-            $this->_extendHeader($headers, "Content-Transfer-Encoding", $contentTransferEncoding);
+            $this->_extendHeader($headers, "Content-type", "$contentType; charset=$charset");
+            $this->_extendHeader($headers, "Content-transfer-encoding", $contentTransferEncoding);
 
             $mailData["headers"] = $headers;
             $mailData["content"] = $content;
