@@ -47,8 +47,8 @@ That's it
 
 ## Using the Template Engine
 
-For normal reasons you should use the MailTemplateParser to generate your Mail. But template-mailer can
-also be used like an OOP Mail Frontend. You'll find mor Information about this topic in the next section.
+For standard purpose you should use the MailTemplateParser to generate your Mail. But template-mailer can
+also be used like an OOP Mail Frontend. You'll find mor Information about that topic in the next section.
 
 ### Security enhancements when using Templates
 
