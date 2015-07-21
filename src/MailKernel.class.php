@@ -12,6 +12,8 @@ namespace de\leuffen\template_mailer;
 
 class MailKernel {
 
+    const VERSION = "1.0.1";
+
     const EOL = "\r\n";
 
     /**

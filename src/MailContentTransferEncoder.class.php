@@ -21,4 +21,15 @@ class MailContentTransferEncoder {
         return chunk_split(base64_encode($input), 76);
     }
 
+
+    public function encode ($input, $targetContentTransferEncoding) {
+        switch (strtoupper($targetContentTransferEncoding)) {
+            case "QUOTED-PRINTABLE":
+                return $this->encodeQuotedPrintable($input);
+            case "BASE64":
+                return $this->encodeBase64($input);
+        }
+        throw new \InvalidArgumentException("No encoder available for targetContentTransferEncoding: '$targetContentTransferEncoding'");
+    }
+
 }

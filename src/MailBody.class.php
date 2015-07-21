@@ -162,9 +162,13 @@ class MailBody {
      * @param $contentType
      * @return $this
      */
-    public function setContentType ($contentType="auto") {
-        $this->mContentType = $contentType;
+    public function setContentType ($contentType=NULL) {
+        $this->mContentType = strtolower($contentType);
         return $this;
+    }
+
+    public function getContentType () {
+        return $this->mContentType;
     }
 
     public function setCharset ($charset="UTF-8") {
