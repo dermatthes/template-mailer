@@ -88,6 +88,17 @@ Subject: Some fancy mail subject
 
 You don't have to take care about boundaries, additional headers nor correct escaping.
 
+When defining mailPart you can use the attributes defined below to fit your needs:
+
+| Attribute              | Description                                 | Allowed values |
+|------------------------|---------------------------------------------|----------------|
+| contentType            |                                             | text/plain, text/html, application/pdf, ... |
+| contentDisposition     |                                             | attachment, inline |
+| charset                | Default: UTF-8                              | utf-8, iso-8895-1, ...|
+| fileName               | Used with contentDispositon="attachment": The filename to display in attachements |  |
+| id                     | Used to reference attached images           | |
+| skipEncoding           | If skipEncoding="no" is present, Text-Template will do no own encoding to the contents | YES, NO |
+
 ## About
 Template-Mailer was written by Matthias Leuffen <http://leuffen.de>
 
