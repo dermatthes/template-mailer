@@ -94,6 +94,7 @@ When defining mailPart you can use the attributes defined below to fit your need
 |------------------------|---------------------------------------------|----------------|
 | contentType            |                                             | text/plain, text/html, application/pdf, ... |
 | contentDisposition     |                                             | attachment, inline |
+| contentTransferEncoding| Default: 8Bit                               | 8Bit, quoted-printable, base64 |
 | charset                | Default: UTF-8                              | utf-8, iso-8895-1, ...|
 | fileName               | Used with contentDispositon="attachment": The filename to display in attachements |  |
 | id                     | Used to reference attached images           | |
