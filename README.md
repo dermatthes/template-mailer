@@ -84,7 +84,7 @@ Subject: Some fancy mail subject
 
 ..more mail-parts..
 ```
-... where you define each part of your mail between <mailPart> and </mailPart>.
+... where you define each part of your mail between `<mailPart>` and `</mailPart>`.
 
 You don't have to take care about boundaries, additional headers nor correct escaping.
 
