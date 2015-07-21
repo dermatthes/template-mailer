@@ -17,6 +17,8 @@ class MailPart {
     private $mCharset = "UTF-8";
     private $mContentType = "text/plain";
     private $mContentDisposition = NULL;
+    private $mContentDispositionFileName = NULL;
+    private $mContentDispositionId = NULL;
     private $mContent = "";
 
 
@@ -82,20 +84,35 @@ class MailPart {
      *  inline:         Show in Editor
      *  attachement:    Add as Attachement
      *
-     * Param2: filename
-     *  filename of attachement
-     *
-     * Param3: id
-     *   id for referencing inside the email
-     *
      *
      * @param string $type
-     * @param null $filename
-     * @param null $id
      * @return $this
      */
-    public function setContentDisposition ($type="attachment", $filename=NULL, $id=NULL) {
-        $this->mContentDisposition = [$type, $filename, $id];
+    public function setContentDisposition ($type="attachment") {
+        $this->mContentDisposition = $type;
+        return $this;
+    }
+
+
+    /**
+     * @param $fileName
+     * @return $this
+     */
+    public function setContentDispositionFileName ($fileName) {
+        if ($this->mContentDisposition === NULL)
+            $this->mContentDisposition = "attachment";
+        $this->mContentDispositionFileName = $fileName;
+        return $this;
+    }
+
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setContentDispositionId ($id) {
+        if ($this->mContentDisposition === NULL)
+            $this->mContentDisposition = "attachment";
+        $this->mContentDispositionId = $id;
         return $this;
     }
 
@@ -127,9 +144,11 @@ class MailPart {
         $this->_extendHeader($headers, "Content-Type", "{$this->mContentType}; charset={$this->mCharset}");
         $this->_extendHeader($headers, "Content-Transfer-Encoding", $this->mContentTransferEncoding);
         if ($this->mContentDisposition !== NULL) {
-            $dispo = $this->mContentDisposition[0];
-            if ($this->mContentDisposition[1] !== NULL)
-                $dispo .= "; filename=\"{$this->mContentDisposition[1]}\"";
+            $dispo = $this->mContentDisposition;
+            if ($this->mContentDispositionFileName !== NULL)
+                $dispo .= "; filename=\"{$this->mContentDispositionFileName}\"";
+            if ($this->mContentDispositionId !== NULL)
+                $dispo .= "; id=\"{$this->mContentDispositionId}\"";
             $this->_extendHeader($headers, "Content-Disposition", $dispo);
         }
 
