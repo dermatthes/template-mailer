@@ -117,6 +117,10 @@ class MailTemplateParser {
                     $mailBody->setFrom($headerValue);
                     break;
 
+                case "CONTENT-TRANSFER-ENCODING":
+                    $mailBody->setContentTransferEncoding($headerValue);
+                    break;
+
                 default:
                     if (trim ($origHeaderName) != "" && trim  ($headerValue) != "")
                         $mailBody->addHeader($origHeaderName, $headerValue);
@@ -219,10 +223,15 @@ class MailTemplateParser {
             $textTemplate->loadTemplate($bodyString);
             $content = $textTemplate->apply($data);
 
+            $contentTransferEncoding = $mailBody->getContentTransferEncoding();
+            if ($contentTransferEncoding === NULL)
+                $mailBody->setContentTransferEncoding("8Bit");
             $encode = new MailContentTransferEncoder();
-            $content = $encode->encodeQuotedPrintable($content);
+
+            $content = $encode->encode($content, $mailBody->getContentTransferEncoding());
 
             $mailPart = new MailPart($content, $contentType);
+            $mailPart->setContentTransferEncoding($mailBody->getContentTransferEncoding());
             $mailBody->addPart($mailPart);
         }
     }

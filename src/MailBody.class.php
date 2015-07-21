@@ -39,6 +39,8 @@ class MailBody {
     private $mContentType = NULL;
     private $mCharset = NULL;
 
+    private $mContentTransferEncoding = NULL;
+
     private $mHeader = [];
 
     /**
@@ -70,11 +72,7 @@ class MailBody {
     }
 
 
-    private function _escapeHeaderValue ($input) {
-        $input = str_replace("\r\n", " ", $input);
-        $input = str_replace("\n", " ", $input);
-        return $input;
-    }
+
 
 
 
@@ -132,6 +130,26 @@ class MailBody {
             $email = new EMailAddress($email);
         $this->mBcc[] = $email;
         return $this;
+    }
+
+    /**
+     * Set the contentTransferEncoding of the envelope
+     *
+     * Available:
+     * - 8BIT
+     * - quoted-printable
+     * - base64
+     *
+     * @param string $encoding
+     * @return $this
+     */
+    public function setContentTransferEncoding ($encoding="quoted-printable") {
+        $this->mContentTransferEncoding = $encoding;
+        return $this;
+    }
+
+    public function getContentTransferEncoding () {
+        return $this->mContentTransferEncoding;
     }
 
     /**

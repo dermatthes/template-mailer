@@ -14,7 +14,7 @@ class MailContentTransferEncoder {
 
 
     public function encodeQuotedPrintable ($input) {
-        return wordwrap(quoted_printable_encode($input), 75, "\r\n");
+        return wordwrap(quoted_printable_encode($input), 75, MailKernel::EOL);
     }
 
     public function encodeBase64 ($input) {
@@ -28,6 +28,13 @@ class MailContentTransferEncoder {
                 return $this->encodeQuotedPrintable($input);
             case "BASE64":
                 return $this->encodeBase64($input);
+            case "8BIT":
+                return  wordwrap($input, 900, MailKernel::EOL); // Already UTF-8;
+            case "7BIT": {
+                if ( ! function_exists("imap_utf7_encode"))
+                    throw new \Exception("Cannot encode 7Bit Message: imap_utf7_encode() function missing. Please install the imap package.");
+                return imap_utf7_encode(utf8_decode($input));
+            }
         }
         throw new \InvalidArgumentException("No encoder available for targetContentTransferEncoding: '$targetContentTransferEncoding'");
     }

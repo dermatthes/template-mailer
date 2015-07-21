@@ -13,7 +13,7 @@ namespace de\leuffen\template_mailer;
 class MailPart {
 
 
-    private $mContentTransferEncoding = "quoted-printable";
+    private $mContentTransferEncoding = "8bit";
     private $mCharset = "UTF-8";
     private $mContentType = "text/plain";
     private $mContentDisposition = NULL;
