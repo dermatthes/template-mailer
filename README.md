@@ -1,10 +1,15 @@
 # Template-Mailer
 
-This Project is still under development. Check again in a few days.
+This project combines an powerfull but easy-to-use OOP interface to Multipart-Mime-Mails in conjunction
+ with a easy to learn template-language for defining complete multipart-messages within one string. (Including
+ subject, from, other headers, all kinds of message-parts).
 
 ## Install
 
-@todo
+By now there is only the git-repository coming with an classloader in src/autoloader.inc.php
+
+__When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
+repositories under /externals__
 
 ## Basic Example
 Define a template using text-template syntax
