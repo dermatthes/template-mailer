@@ -70,6 +70,21 @@ also be used like an OOP Mail Frontend. You'll find mor Information about that t
 Template-Mail uses Text-Template (http://github.com/dermatthes/text-template) Syntax to define your
 templates.
 
+Template consist of two sections. The *header-section*...
+
+```
+To: Some User <some@user.com>
+Subject: Some fancy mail subject
+```
+... followed by __one empty line__, and the *body-section*...
+```
+<mailPart contentType="text/html">
+</mailPart>
+... more mail-parts
+```
+... where you define each part of your mail between <mailPart> and </mailPart>.
+
+You don't have to take care about boundaries, additional headers nor correct escaping.
 
 ## About
 Template-Mailer was written by Matthias Leuffen <http://leuffen.de>
