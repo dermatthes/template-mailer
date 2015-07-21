@@ -248,7 +248,6 @@ class MailTemplateParser {
      * MailTemplateParser->apply()->send()
      *
      * @param $data
-     * @param string $mtaAlias
      * @return MailBody
      */
     public function send ($data) {
