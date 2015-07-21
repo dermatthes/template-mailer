@@ -1,0 +1,30 @@
+From: sender@address.de
+To: {= recipient}
+Subject: {= subject}
+
+<mailPart contentType="text/plain">
+This is some Text Content
+<p>
+Escaped Content:<br>
+{= content}
+</p>
+<p>
+Raw Content:<br>
+{= content | raw }
+</p>
+</mailPart>
+
+<mailPart contentType="text/html">
+
+<h1>This is some HTML Content</h1>
+<p>
+Escaped Content:<br>
+{= content}
+</p>
+<p>
+Raw Content:<br>
+{= content | raw }
+</p>
+</mailPart>
+
+

@@ -4,6 +4,7 @@ $content = <<<EOT
 ---MultiLineContent
 ÄÜÖß?=)(/&%\$§"!°^*+~-.,;:_< > |@\}{[]
 
+<b>Some Html Content</b>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis faucibus egestas. Sed sit amet elit eleifend magna finibus lacinia ut ac felis. Fusce a ornare nisi. Pellentesque a leo id nunc lobortis venenatis non vitae nunc. Aliquam elementum, libero quis volutpat dignissim, turpis tellus rhoncus nisi, eget accumsan nunc dolor nec dolor. Vivamus lacinia nunc id libero convallis dapibus. Etiam eu tristique augue. Integer cursus sollicitudin erat in bibendum. Donec ullamcorper tincidunt mi at vulputate. Curabitur eu metus fringilla sem aliquet bibendum.
 

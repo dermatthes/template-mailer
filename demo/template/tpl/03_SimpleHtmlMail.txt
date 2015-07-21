@@ -1,0 +1,14 @@
+From: sender@address.de
+To: {= recipient}
+Subject: {= subject}
+Content-Type: text/html
+
+<h1>This is some Content</h1>
+<p>
+Escaped Content:<br>
+{= content}
+</p>
+<p>
+Raw Content:<br>
+{= content | raw }
+</p>

@@ -172,7 +172,7 @@ class MailTemplateParser {
                     if (isset ($attribs["CONTENTDISPOSITION"]))
                         $mailPart->setContentDisposition($attribs["CONTENTDISPOSITION"]);
 
-                    $contentTransferEncoding = "quoted-printable";
+                    $contentTransferEncoding = "8Bit";
                     if (isset ($attribs["CONTENTTRANSFERENCODING"]))
                         $contentTransferEncoding = $attribs["CONTENTTRANSFERENCODING"];
                     $mailPart->setContentTransferEncoding($contentTransferEncoding);

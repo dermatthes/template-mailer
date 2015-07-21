@@ -141,7 +141,7 @@ class MailPart {
 
         $headers = "--" . $body->__getBoundary() . $eol;
 
-        $this->_extendHeader($headers, "Content-type", "{$this->mContentType}; charset={$this->mCharset}");
+        $this->_extendHeader($headers, "Content-Type", "{$this->mContentType}; charset={$this->mCharset}");
         $this->_extendHeader($headers, "Content-transfer-encoding", $this->mContentTransferEncoding);
         if ($this->mContentDisposition !== NULL) {
             $dispo = $this->mContentDisposition;

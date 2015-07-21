@@ -27,18 +27,20 @@ you just ordered following items:
 ... do the same stuff in HTML
 </mailPart>
 ```
+*Notice: To display the html-content by default it's important, to put the text/html content to the end of the mail*
 
 Load the template and send the mail:
 
 ```php
-$mailer = new TemplateMail($template);
-$mail = $mailer->parse ($orderData);
-
-$mta = new PhpInternalDeliveryAgent();
-$mta->send ($mail);
+$parser = new TemplateMailParser();
+$parser->loadTemplate($template);
+$parser->send ($orderData);
 
 ```
 That's it
+
+
+
 
 
 ## About
