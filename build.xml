@@ -39,8 +39,8 @@
 
 
     <target name="copy_main_files_to_stage" depends="clean, update-externals">
-        <mkdir dir="./_stage"/>
-        <copy todir="./_stage/">
+        <mkdir dir="./_stage/template-mailer"/>
+        <copy todir="./_stage/template-mailer">
             <fileset dir="./">
                 <include name="src/**"/>
                 <include name="externals/text-template/src/*"/>
@@ -54,8 +54,8 @@
 
     <target name="build_phar" depends="copy_main_files_to_stage, phpunit">
         <mkdir dir="./_build"/>
-        <pharpackage destfile="./_build/template-mailer.phar.php" basedir="./_stage/" stub="./xsrc/pharStub.php">
-            <fileset dir="./_stage/">
+        <pharpackage destfile="./_build/template-mailer.phar.php" basedir="./_stage/template-mailer" stub="./xsrc/pharStub.php">
+            <fileset dir="./_stage/template-mailer">
                 <include name="**/**" />
             </fileset>
         </pharpackage>
@@ -72,15 +72,10 @@
 
     <target name="build_source_gzip" depends="copy_main_files_to_stage">
         <delete file="_build/template-mailer.recent.src.tar.gz"/>
-        <copy todir="./_stage/src/">
-            <fileset dir="./_stage/">
-                <include name="README.md"/>
-                <include name="LICENSE"/>
-            </fileset>
 
-        </copy>
         <tar compression="gzip" destfile="_build/template-mailer.recent.src.tar.gz">
-            <fileset dir="./_stage/src/">
+            <fileset dir="./_stage">
+                <exclude name="template-mailer/externals"/>
                 <filename name="**" />
             </fileset>
         </tar>
