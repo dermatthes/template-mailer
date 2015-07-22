@@ -19,6 +19,8 @@ That's it.
 
 `template-mailer.recent.src.tar.gz`
 
+Download Url: <https://raw.githubusercontent.com/dermatthes/template-mailer/master/_build/template-mailer.recent.src.tar.gz>
+
 Includes all files from the /src directory. No autoloader is included. 
 It is mainly for integration into frameworks working with an own classloader.
 
