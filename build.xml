@@ -74,8 +74,8 @@
         <delete file="_build/template-mailer.recent.src.tar.gz"/>
         <copy todir="./_stage/src/">
             <fileset dir="./_stage/">
-                <filename name="README.md"/>
-                <filename name="LICENSE"/>
+                <include name="README.md"/>
+                <include name="LICENSE"/>
             </fileset>
 
         </copy>
