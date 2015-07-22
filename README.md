@@ -6,7 +6,7 @@ This project combines an powerfull but easy-to-use OOP interface to Multipart-Mi
 
 ## Install
 
-* __Download__: Just download the .gzip'ed phar-archive here: https://github.com/dermatthes/template-mailer/master/_build/template-mailer.recent.phar.php.gz
+* __Download__: Just download the .gzip'ed phar-archive here: https://github.com/dermatthes/template-mailer/blob/master/_build/template-mailer.recent.phar.php.gz
 
 
 
