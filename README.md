@@ -105,11 +105,11 @@ When defining mailPart you can use the attributes defined below to fit your need
 
 One word to the content-type of the container-mail:
 
-* `__multipart/mixed__`: Default, if more than one mailPart isset
+* __`multipart/mixed`__: Default, if more than one mailPart isset
     * All Parts are shown in order of occurence
     * Attachments possible
     
-* `__multipart/alternative__`: Use this if you want to display only one part (HTML or TEXt) with inline Attachements
+* __`multipart/alternative`__: Use this if you want to display only one part (HTML or TEXt) with inline Attachements
     * Last part has highest precedence
     * Attachments will not be displayed
 
