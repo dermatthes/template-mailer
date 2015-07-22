@@ -8,12 +8,12 @@ This project combines an powerfull but easy-to-use OOP interface to Multipart-Mi
 
 By now there is only the git-repository coming with an classloader in src/autoloader.inc.php
 
-__When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
-repositories under /externals__
+> __When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
+> repositories under /externals__
 
 ## Basic Example
-__See `/doc/template/tpl` for a bunch of working examples.__ You can test the examples with 
-`/doc/template/SendTestMail.php` against your MailClient / MTA.
+> See `/doc/template/tpl` for a bunch of working examples. You can test the examples with 
+> `/doc/template/SendTestMail.php` against your MailClient / MTA.
 
 Define a template using text-template syntax
 
