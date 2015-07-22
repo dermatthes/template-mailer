@@ -18,7 +18,7 @@ $fn = function ($toEmail) {
     $data["recipient"] = $toEmail;
 
     $parser = new MailTemplateParser();
-    $parser->loadTemplate(file_get_contents("tpl/".$_POST["template"]));
+    $parser->loadTemplate(file_get_contents("tpl/".basename($_POST["template"])));
     $parser->send($data);
 
     echo "<span>Mail successfully sent</span>";
@@ -42,6 +42,6 @@ if (isset ($_POST["email"]))
         <? endforeach?>
     </select>
     <label for="email">E-Mail:</label>
-    <input type="email" name="email" placeholder="your@address" value="<?= htmlspecialchars($_POST["email"]); ?>">
+    <input type="email" name="email" placeholder="your@address" value="<?= htmlspecialchars(@$_POST["email"]); ?>">
     <button type="submit">Send Mail</button>
 </form>

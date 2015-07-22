@@ -12,6 +12,9 @@ __When cloning make sure to `git submodule init` and `git submodule upgrade` to 
 repositories under /externals__
 
 ## Basic Example
+__See `/doc/template/tpl` for a bunch of working examples.__ You can test the examples with 
+`/doc/template/SendTestMail.php` against your MailClient / MTA.
+
 Define a template using text-template syntax
 
 ```
