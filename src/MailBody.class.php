@@ -186,6 +186,18 @@ class MailBody {
     /**
      * Set the content-Type of the Body-Document
      *
+     * Leave empty to auto-detect:
+     *
+     * multipart/alternative:
+     *  - Will show only HTML or TEXT Version
+     *  - Last part is favorite
+     *  - No attachments possible
+     *
+     * multipart/mixed
+     *  - Will show any Version
+     *  - Attachments possible
+     *
+     *
      * @param $contentType
      * @return $this
      */
@@ -308,7 +320,7 @@ class MailBody {
 
         $contentType = $this->mContentType;
         if ($contentType === NULL)
-            $contentType = "multipart/alternative";
+            $contentType = "multipart/mixed";
 
         $this->_extendHeader($headers, "Content-Type", "$contentType; boundary=\"{$this->__getBoundary()}\"");
         $mailData["headers"] = $headers;

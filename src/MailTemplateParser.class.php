@@ -147,9 +147,9 @@ class MailTemplateParser {
 
         if (preg_match ('/\<mailPart.*\>/im', $bodyString)) {
             // Multipart-Body
-            $rest = preg_replace_callback('/\<mailPart (.*?)\>(.*?)\<\/mailPart\>/ims',
+            $rest = preg_replace_callback('/\<mailPart (.*?)\>\n?(.*?)\n?\<\/mailPart\>/ims',
                 function ($matches) use ($mailBody, $data) {
-                    $allowedAttribs = ["CONTENTTYPE", "CHARSET", "CONTENTTRANSFERENCODING", "CONTENTDISPOSITION", "FILENAME", "ID", "SKIPENCODING"];
+                    $allowedAttribs = ["CONTENTTYPE", "CHARSET", "CONTENTTRANSFERENCODING", "CONTENTDISPOSITION", "FILENAME", "TOKEN", "SKIPENCODING"];
 
                     $attribs = $this->_getOptions($matches[1]);
                     foreach ($attribs as $curKey => $curValue) {
@@ -171,6 +171,10 @@ class MailTemplateParser {
                         $mailPart->setCharset($attribs["CHARSET"]);
                     if (isset ($attribs["CONTENTDISPOSITION"]))
                         $mailPart->setContentDisposition($attribs["CONTENTDISPOSITION"]);
+                    if (isset ($attribs["FILENAME"]))
+                        $mailPart->setContentDispositionFileName($attribs["FILENAME"]);
+                    if (isset ($attribs["TOKEN"]))
+                        $mailPart->setContentDispositionToken($attribs["TOKEN"]);
 
                     $contentTransferEncoding = "8Bit";
                     if (isset ($attribs["CONTENTTRANSFERENCODING"]))

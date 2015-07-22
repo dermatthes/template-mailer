@@ -18,7 +18,7 @@ class MailPart {
     private $mContentType = "text/plain";
     private $mContentDisposition = NULL;
     private $mContentDispositionFileName = NULL;
-    private $mContentDispositionId = NULL;
+    private $mContentDispositionToken = NULL;
     private $mContent = "";
 
 
@@ -109,10 +109,10 @@ class MailPart {
      * @param $id
      * @return $this
      */
-    public function setContentDispositionId ($id) {
+    public function setContentDispositionToken ($token) {
         if ($this->mContentDisposition === NULL)
             $this->mContentDisposition = "attachment";
-        $this->mContentDispositionId = $id;
+        $this->mContentDispositionToken = $token;
         return $this;
     }
 
@@ -131,6 +131,7 @@ class MailPart {
 
         $headerValue = str_replace("\r\n", " ", $headerValue);
         $headerValue = str_replace("\n", " ", $headerValue);
+        $headerValue = str_replace("\r", " ", $headerValue);
 
         $header .= $headerName . ": " . $headerValue . $eol;
     }
@@ -146,9 +147,9 @@ class MailPart {
         if ($this->mContentDisposition !== NULL) {
             $dispo = $this->mContentDisposition;
             if ($this->mContentDispositionFileName !== NULL)
-                $dispo .= "; filename=\"{$this->mContentDispositionFileName}\"";
-            if ($this->mContentDispositionId !== NULL)
-                $dispo .= "; id=\"{$this->mContentDispositionId}\"";
+                $dispo .= "; filename=\"" . addslashes($this->mContentDispositionFileName) . "\"";
+            if ($this->mContentDispositionToken !== NULL)
+                $dispo .= "; token=\"". addslashes($this->mContentDispositionToken) . "\"";
             $this->_extendHeader($headers, "Content-Disposition", $dispo);
         }
 
