@@ -24,3 +24,10 @@ It is mainly for integration into frameworks working with an own classloader.
 
 __Info:__ externals are not included. Therefor you have to download 
 text-template your own.
+
+The source-file is organizes:
+```
++ template-mailer
+|-+ src
+| |-+ exception
+```
