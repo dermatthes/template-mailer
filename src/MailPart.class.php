@@ -19,6 +19,7 @@ class MailPart {
     private $mContentDisposition = NULL;
     private $mContentDispositionFileName = NULL;
     private $mContentDispositionToken = NULL;
+    private $mContentId = NULL;
     private $mContent = "";
 
 
@@ -116,6 +117,16 @@ class MailPart {
         return $this;
     }
 
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setContentId ($id) {
+        if ($this->mContentDisposition === NULL)
+            $this->mContentDisposition = "attachment";
+        $this->mContentId = $id;
+        return $this;
+    }
 
     /**
      * Used by MailBody to access the relevant data in case of only one MailPart was added.
@@ -152,6 +163,8 @@ class MailPart {
                 $dispo .= "; token=\"". addslashes($this->mContentDispositionToken) . "\"";
             $this->_extendHeader($headers, "Content-Disposition", $dispo);
         }
+        if ($this->mContentId !== NULL)
+            $this->_extendHeader($headers, "Content-Id",  "<{$this->mContentId}>");
 
         $mailPart = $headers . $eol;
 

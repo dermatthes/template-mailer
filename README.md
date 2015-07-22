@@ -97,7 +97,8 @@ When defining mailPart you can use the attributes defined below to fit your need
 | contentTransferEncoding| Default: 8Bit                               | 8Bit, quoted-printable, base64 |
 | charset                | Default: UTF-8                              | utf-8, iso-8895-1, ...|
 | fileName               | Used with contentDispositon="attachment": The filename to display in attachements |  |
-| token                  | Used to reference attached images           | |
+| token                  |           | |
+| id                     | Used to reference attached files. If you name it `somefile` you can reference it `<img src="cid:somefile">` |  |
 | skipEncoding           | If skipEncoding="no" is present, Text-Template will do no own encoding to the contents | YES, NO |
 
 
@@ -112,6 +113,10 @@ One word to the content-type of the container-mail:
 * __`multipart/alternative`__: Use this if you want to display only one part (HTML or TEXt) with inline Attachements
     * Last part has highest precedence
     * Attachments will not be displayed
+
+* __`multipart/related`__: Use this if you want to embed attachements into the mail
+    * First part has highest precedence
+    * Inline-Attachments will not be displayed if they are displayed inside html-code.
 
 
 By default, Template-Mailer will set the content-type in de header of the container-mail to `multipart/mixed`, which
