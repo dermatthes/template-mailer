@@ -244,6 +244,22 @@ class MailBody {
     }
 
 
+    /**
+     * Replace \r\n \n \r by \r\n
+     *
+     * So there will be no other line-feeds than \r\n
+     *
+     * @param $input
+     * @return mixed
+     */
+    public function _cleanLfContent ($input) {
+        $input = str_replace("\r\n", "\n", $input);
+        $input = str_replace("\r", "\n", $input);
+        $input = str_replace("\n", MailKernel::EOL, $input);
+        return $input;
+    }
+
+
     public function render (&$mailData=NULL) {
         $eol = MailKernel::EOL;
 
@@ -308,11 +324,11 @@ class MailBody {
             $this->_extendHeader($headers, "Content-transfer-encoding", $contentTransferEncoding);
 
             $mailData["headers"] = $headers;
-            $mailData["content"] = $content;
+            $mailData["content"] = $this->_cleanLfContent($content);
 
             $mail = $headers . $optHeaders . $eol;
             $mail .= $content;
-            return $mail;
+            return $this->_cleanLfContent($mail);
         }
 
         // We have a multipart mail
@@ -327,10 +343,10 @@ class MailBody {
 
         $content = "";
         foreach ($this->mParts as $curPart) {
-            $content .= $curPart->render($this);
+            $content .= $this->_cleanLfContent($curPart->render($this));
         }
         $content .= "--" . $this->__getBoundary() . "--";
-        $mailData["content"] = $content;
+        $mailData["content"] = $this->_cleanLfContent($content);
 
         return $headers . $optHeaders . $eol . $content;
     }
