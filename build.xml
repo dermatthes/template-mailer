@@ -59,14 +59,27 @@
         </pharpackage>
     </target>
 
-
-    <target name="main" depends="build_phar" description="Generate local build from sources build directory">
+    <target name="build_phar_gzip" depends="build_phar">
         <delete file="_build/template-mailer.recent.phar.php.gz"/>
         <tar compression="gzip" destfile="_build/template-mailer.recent.phar.php.gz">
             <fileset dir="./_build/">
                 <filename name="template-mailer.phar.php" />
             </fileset>
         </tar>
+    </target>
+
+    <target name="build_source_gzip" depends="copy_main_files_to_stage">
+        <delete file="_build/template-mailer.recent.src.tar.gz"/>
+        <tar compression="gzip" destfile="_build/template-mailer.recent.src.tar.gz">
+            <fileset dir="./_stage/src/">
+                <filename name="**" />
+            </fileset>
+        </tar>
+    </target>
+
+
+    <target name="main" depends="build_phar_gzip, build_source_gzip" description="Generate local build from sources build directory">
+
         <!-- <copy file="_build/text-template.recent.phar.php.gz" tofile="_build/text-template.${buildts}.phar.php.gz" /> -->
         <phingcall target="clean"/>
     </target>
