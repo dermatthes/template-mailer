@@ -6,7 +6,11 @@ This project combines an powerfull but easy-to-use OOP interface to Multipart-Mi
 
 ## Install
 
-By now there is only the git-repository coming with an classloader in src/autoloader.inc.php
+* __Download__: Just download the .gzip'ed phar-archive here: https://gitlab.com/dermatthes/template-mailer/master/_build/template-mailer.recent.phar.php.gz
+
+
+
+By now there is only the git-repository coming with an classloader in /autoloader.inc.php
 
 > __When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
 > repositories beneath /externals__

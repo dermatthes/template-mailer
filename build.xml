@@ -15,7 +15,12 @@
     </tstamp>
 
     <target name="clean">
-        <delete file="_build/text-template.phar.php"/>
+        <delete file="_build/template-mailer.phar.php"/>
+        <delete dir="./_stage"/>
+    </target>
+
+    <target name="update-externals">
+        <exec dir="./" command="git submodule update" logoutput="true"/>
     </target>
 
 
@@ -33,11 +38,22 @@
 
 
 
+    <target name="copy_main_files_to_stage" depends="clean, update-externals">
+        <mkdir dir="./_stage"/>
+        <copy todir="./_stage/">
+            <fileset dir="./">
+                <include name="src/**"/>
+                <include name="externals/text-template/src/*"/>
+                <include name="autoloader.inc.php"/>
+            </fileset>
+        </copy>
+    </target>
 
-    <target name="build_phar" depends="phpunit">
+
+    <target name="build_phar" depends="copy_main_files_to_stage, phpunit">
         <mkdir dir="./_build"/>
-        <pharpackage destfile="./_build/text-template.phar.php" basedir="./src/" stub="./xsrc/pharStub.php">
-            <fileset dir="./src/">
+        <pharpackage destfile="./_build/template-mailer.phar.php" basedir="./_stage/" stub="./xsrc/pharStub.php">
+            <fileset dir="./_stage/">
                 <include name="**/**" />
             </fileset>
         </pharpackage>
@@ -45,10 +61,10 @@
 
 
     <target name="main" depends="build_phar" description="Generate local build from sources build directory">
-        <delete file="_build/text-template.recent.phar.php.gz"/>
-        <tar compression="gzip" destfile="_build/text-template.recent.phar.php.gz">
+        <delete file="_build/template-mailer.recent.phar.php.gz"/>
+        <tar compression="gzip" destfile="_build/template-mailer.recent.phar.php.gz">
             <fileset dir="./_build/">
-                <filename name="text-template.phar.php" />
+                <filename name="template-mailer.phar.php" />
             </fileset>
         </tar>
         <!-- <copy file="_build/text-template.recent.phar.php.gz" tofile="_build/text-template.${buildts}.phar.php.gz" /> -->

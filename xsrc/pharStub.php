@@ -1,8 +1,9 @@
 <?php
 
-Phar::mapPhar('text-template');
+Phar::mapPhar('template-mailer');
 
-require ("phar://text-template/TextTemplate.php");
+
+require ("phar://template-mailer/autoload.inc.php");
 
 
 __HALT_COMPILER(); ?>
