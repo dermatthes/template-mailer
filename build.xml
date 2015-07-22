@@ -75,9 +75,12 @@
 
         <tar compression="gzip" destfile="_build/template-mailer.recent.src.tar.gz">
             <fileset dir="./_stage">
+                <include name="template-mailer/src/**"/>
+                <include name="template-mailer/README.md"/>
+                <include name="template-mailer/LICENSE"/>
                 <exclude name="template-mailer/externals/**"/>
-                <include name="src/**"/>
-                <exclude name="**" />
+
+
             </fileset>
         </tar>
     </target>
