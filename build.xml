@@ -45,6 +45,8 @@
                 <include name="src/**"/>
                 <include name="externals/text-template/src/*"/>
                 <include name="autoloader.inc.php"/>
+                <include name="README.md"/>
+                <include name="LICENSE"/>
             </fileset>
         </copy>
     </target>
