@@ -114,7 +114,7 @@ One word to the content-type of the container-mail:
     * Attachments will not be displayed
 
 
-By default, Template-Mailer will set the content-type in de header of the container-mail to `multipart/mixed`, wich
+By default, Template-Mailer will set the content-type in de header of the container-mail to `multipart/mixed`, which
 allows multiple attachments.
 
 But it will display all attachments.
