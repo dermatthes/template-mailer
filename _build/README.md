@@ -21,3 +21,6 @@ That's it.
 
 Includes all files from the /src directory. No autoloader is included. 
 It is mainly for integration into frameworks working with an own classloader.
+
+__Info:__ externals are not included. Therefor you have to download 
+text-template your own.
