@@ -8,8 +8,6 @@ This project combines an powerfull but easy-to-use OOP interface to Multipart-Mi
 
 * __Download__: Read more about integration: https://github.com/dermatthes/template-mailer/tree/master/_build
 
-
-
 By now there is only the git-repository coming with an classloader in /autoloader.inc.php
 
 > __When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
@@ -52,7 +50,9 @@ $parser->send ($orderData);
 That's it
 
 
-## Sending programmatic email
+## Programmatic multipart example
+You can use template-mailer to send multipart-mail without any templating directly from your code:
+
 
 ```php
 $mailBody = new MailBody ("to@address.de", "Some subject", "from@me.de");
