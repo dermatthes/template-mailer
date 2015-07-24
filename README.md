@@ -52,6 +52,16 @@ $parser->send ($orderData);
 That's it
 
 
+## Sending programmatic email
+
+```php
+$mailBody = new MailBody ("to@address.de", "Some subject", "from@me.de");
+$mailBody->addPart (new MailPart ("Some Text Content", "text/plain"));
+$mailBody->addPart (new MailPart ("<h1>Some Html Part</h1>", "text/html"));
+$mailBody->send();
+```
+
+
 ## Using the Template Engine
 
 For standard purpose you should use the MailTemplateParser to generate your Mail. But template-mailer can
