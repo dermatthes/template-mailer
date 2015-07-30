@@ -42,7 +42,7 @@ you just ordered following items:
 Load the template and send the mail:
 
 ```php
-$parser = new TemplateMailParser();
+$parser = new MailTemplateParser();
 $parser->loadTemplate($template);
 $parser->send ($orderData);
 
