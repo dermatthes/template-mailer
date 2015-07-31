@@ -33,7 +33,7 @@ you just ordered following items:
 {=@index1}: {=curItem.title|cutright:20} {=curItem.quantity} x {=curItem.price|currency}
 {/for}
 </mailPart>
-<mailPart contentType="text/html" encoding="UTF-8">
+<mailPart contentType="text/html" CHARSET="UTF-8">
 ... do the same stuff in HTML
 </mailPart>
 ```
