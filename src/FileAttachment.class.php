@@ -22,7 +22,7 @@ class FileAttachment extends MailPart {
                 ),
                 75
             ),
-            mime_content_type($fileName),
+            MIME::ByFileName($fileName),
             "UTF-8",
             "base64");
     }
