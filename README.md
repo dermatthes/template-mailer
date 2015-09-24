@@ -69,7 +69,7 @@ or the manual way:
 
 ```php
 $mail->addPart(
-    new MailBody(
+    $_part = new MailBody(
         chunk_split(
             base64_encode(
                 file_get_contents($fileName)
@@ -81,6 +81,7 @@ $mail->addPart(
         "base64"
     )
 );
+$_part->setContentDispositionFileName(basename($fileName));
 ```
 
 send the mail:

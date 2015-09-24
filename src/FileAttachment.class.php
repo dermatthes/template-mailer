@@ -25,6 +25,7 @@ class FileAttachment extends MailPart {
             MIME::ByFileName($fileName),
             "UTF-8",
             "base64");
+        $this->setContentDispositionFileName(basename($fileName));
     }
 
 
