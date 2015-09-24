@@ -45,10 +45,51 @@ Load the template and send the mail:
 $parser = new MailTemplateParser();
 $parser->loadTemplate($template);
 $parser->send ($orderData);
-
 ```
 That's it
 
+
+### Adding MailParts to a template
+
+Use the `apply()` method to not just send the mail but return the `MailBody`:
+
+```php
+$parser = new MailTemplateParser();
+$parser->loadTemplate ($template);
+$mail = $parser->apply($orderData);
+```
+
+Add an attachment using the `FileAttachment` helper class:
+
+```php
+$mail->addPart(new FileAttachment("path/to/image.jpg"));
+```
+
+or the manual way:
+
+```php
+$mail->addPart(
+    new MailBody(
+        chunk_split(
+            base64_encode(
+                file_get_contents($fileName)
+                ),
+                75
+            ),    
+        mime_content_type($fileName),
+        "UTF-8",
+        "base64"
+    )
+);
+```
+
+send the mail:
+
+```php
+$mail->send();
+```
+
+That's it.
 
 ## Programmatic multipart example
 You can use template-mailer to send multipart-mail without any templating directly from your code:
