@@ -190,6 +190,15 @@ You can set it to use `multipart/alternative` by adding the Header
 Content-Type: multipart/alternative
 ```
 
+### Debugging the context
+
+To see the structure of the data passed to the template just add
+
+```
+{= __CONTEXT__ | raw } 
+```
+
+to your template. It will output the structure of the context.
 
 
 
