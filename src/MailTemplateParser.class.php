@@ -35,7 +35,7 @@ class MailTemplateParser {
      *
      * @return TextTemplate
      */
-    public function getTextTemplate () {
+    public function getTextTemplateParser () {
         return $this->mTextTemplate;
     }
 
