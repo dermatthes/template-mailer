@@ -202,6 +202,18 @@ to your template. It will output the structure of the context.
 
 
 
+### Accessing the TextTemplate Parser
+
+To access and configure the TextTemplate Parser use the `MailTemplateParser::getTextTemplateParser()` method.
+
+Example:
+
+```
+$mailTemplateParser->getTextTemplateParser()->addFilter("price", function ($input) { return number_format($input) });
+```
+
+
+
 ## About
 Template-Mailer was written by Matthias Leuffen <http://leuffen.de>
 
