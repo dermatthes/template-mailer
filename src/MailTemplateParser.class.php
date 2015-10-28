@@ -29,6 +29,17 @@ class MailTemplateParser {
         $this->mTextTemplate = $textTemplate;
     }
 
+
+    /**
+     * Return the TextTemplate object
+     *
+     * @return TextTemplate
+     */
+    public function getTextTemplate () {
+        return $this->mTextTemplate;
+    }
+
+
     /**
      * Load a string template
      *
