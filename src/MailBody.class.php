@@ -10,6 +10,7 @@
 namespace de\leuffen\template_mailer;
 
 
+use de\leuffen\template_mailer\exception\InvalidEMailAddressException;
 use de\leuffen\template_mailer\exception\MailException;
 
 class MailBody {
@@ -113,8 +114,12 @@ class MailBody {
      * @return $this
      */
     public function addTo ($email) {
-        if ( ! $email instanceof EMailAddress)
-            $email = new EMailAddress($email);
+        try {
+            if (!$email instanceof EMailAddress)
+                $email = new EMailAddress($email);
+        } catch (InvalidEMailAddressException $e) {
+            return $this;
+        }
         $this->mTo[] = $email;
         return $this;
     }
@@ -126,8 +131,12 @@ class MailBody {
      * @return $this
      */
     public function addBcc ($email) {
-        if ( ! $email instanceof EMailAddress)
-            $email = new EMailAddress($email);
+        try {
+            if (!$email instanceof EMailAddress)
+                $email = new EMailAddress($email);
+        } catch (InvalidEMailAddressException $e) {
+            return $this;
+        }
         $this->mBcc[] = $email;
         return $this;
     }
@@ -177,8 +186,12 @@ class MailBody {
     }
 
     public function setFrom ($email) {
-        if ( ! $email instanceof EMailAddress)
-            $email = new EMailAddress($email);
+        try {
+            if (!$email instanceof EMailAddress)
+                $email = new EMailAddress($email);
+        } catch (InvalidEMailAddressException $e) {
+            return $this;
+        }
         $this->mFrom = $email;
         return $this;
     }
