@@ -99,14 +99,14 @@ class MailTemplateParser {
                     $recipients = explode(",", $recipients);
 
                     foreach ($recipients as $curRecipient)
-                        $mailBody->addTo($curRecipient);
+                        $mailBody->addTo($curRecipient, TRUE);
                     break;
 
                 case "BCC":
                     $recipients = str_replace(";", ",", $headerValue);
                     $recipients = explode(",", $recipients);
                     foreach ($recipients as $curRecipient)
-                        $mailBody->addBcc($curRecipient);
+                        $mailBody->addBcc($curRecipient, TRUE);
                     break;
 
                 case "CC":

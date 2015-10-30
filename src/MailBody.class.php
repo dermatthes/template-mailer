@@ -113,11 +113,13 @@ class MailBody {
      * @param $email
      * @return $this
      */
-    public function addTo ($email) {
+    public function addTo ($email, $softFail = FALSE) {
         try {
             if (!$email instanceof EMailAddress)
                 $email = new EMailAddress($email);
         } catch (InvalidEMailAddressException $e) {
+            if ( ! $softFail)
+                throw $e;
             return $this;
         }
         $this->mTo[] = $email;
@@ -130,11 +132,13 @@ class MailBody {
      * @param $email
      * @return $this
      */
-    public function addBcc ($email) {
+    public function addBcc ($email, $softFail = FALSE) {
         try {
             if (!$email instanceof EMailAddress)
                 $email = new EMailAddress($email);
         } catch (InvalidEMailAddressException $e) {
+            if ( ! $softFail)
+                throw $e;
             return $this;
         }
         $this->mBcc[] = $email;
@@ -167,9 +171,15 @@ class MailBody {
      * @param $email
      * @return $this
      */
-    public function addCc ($email) {
-        if ( ! $email instanceof EMailAddress)
-            $email = new EMailAddress($email);
+    public function addCc ($email, $softFail = FALSE) {
+        try {
+            if (!$email instanceof EMailAddress)
+                $email = new EMailAddress($email);
+        } catch (InvalidEMailAddressException $e) {
+            if ( ! $softFail)
+                throw $e;
+            return $this;
+        }
         $this->mCc[] = $email;
         return $this;
     }
