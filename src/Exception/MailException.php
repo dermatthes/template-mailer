@@ -6,7 +6,7 @@
  * Time: 13:24
  */
 
-namespace de\leuffen\template_mailer\exception;
+namespace Leuffen\TemplateMailer\Exception;
 
 
 class MailException extends \Exception {

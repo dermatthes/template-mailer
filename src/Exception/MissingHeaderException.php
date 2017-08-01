@@ -6,7 +6,7 @@
  * Time: 16:57
  */
 
-namespace de\leuffen\template_mailer\exception;
+namespace Leuffen\TemplateMailer\Exception;
 
 
 class MissingHeaderException extends MailException {

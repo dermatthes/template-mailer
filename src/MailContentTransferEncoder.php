@@ -6,7 +6,7 @@
  * Time: 16:10
  */
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 class MailContentTransferEncoder {

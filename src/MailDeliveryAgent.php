@@ -6,7 +6,7 @@
  * Time: 9:28 PM
  */
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 interface MailDeliveryAgent {

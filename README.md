@@ -6,12 +6,11 @@ This project combines an powerfull but easy-to-use OOP interface to Multipart-Mi
 
 ## Install
 
-* __Download__: Read more about integration: https://github.com/dermatthes/template-mailer/tree/master/_build
+Install using composer:
 
-By now there is only the git-repository coming with an classloader in /autoloader.inc.php
-
-> __When cloning make sure to `git submodule init` and `git submodule upgrade` to pull all connected
-> repositories beneath /externals__
+```
+composer require leuffen/template-mailer
+```
 
 ## Basic Example
 > See directory `/doc/template/tpl/` for a bunch of working examples. You can life-test the examples with 

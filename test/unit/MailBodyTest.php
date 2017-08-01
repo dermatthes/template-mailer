@@ -1,7 +1,5 @@
 <?php
-use de\leuffen\template_mailer\exception\InvalidEMailAddressException;
-use de\leuffen\template_mailer\MailBody;
-use de\leuffen\template_mailer\MailPart;
+
 
 /**
  * Created by PhpStorm.
@@ -9,35 +7,34 @@ use de\leuffen\template_mailer\MailPart;
  * Date: 21.07.15
  * Time: 17:41
  */
+namespace Leuffen\TemplateMailer;
+use Leuffen\TemplateMailer\Exception\InvalidEMailAddressException;
+use Tester\Assert;
+
+require __DIR__ . "/../../vendor/autoload.php";
+\Tester\Environment::setup();
 
 
-    class MailBodyTest extends PHPUnit_Framework_TestCase {
+
+Assert::exception(function () {
+    $body = new MailBody();
+    $body->addTo("Matthias Leuffen <matthes@ leuffen.de>");
+}, InvalidEMailAddressException::class);
 
 
-        public function testInvalidEMailAddress () {
-            $this->setExpectedException(InvalidEMailAddressException::class);
+Assert::noError(function () {
+    $body = new MailBody();
+    $body->addTo("Matthias Leuffen <matthes@leuffen.de>");
+    $body->setSubject("Test Mail");
+    $body->addPart(new MailPart("Some Data"));
+    echo $body->render();
+});
 
-            $body = new MailBody();
-            $body->addTo("Matthias Leuffen <matthes@ leuffen.de>");
-        }
-
-        public function testSinglePartMessage () {
-            $body = new MailBody();
-            $body->addTo("Matthias Leuffen <matthes@leuffen.de>");
-            $body->setSubject("Test Mail");
-            $body->addPart(new MailPart("Some Data"));
-
-            echo $body->render();
-
-        }
-
-        public function testMultiPartMessage () {
-            $body = new MailBody();
-            $body->addTo("Matthias Leuffen <matthes@leuffen.de>");
-            $body->setSubject("Test Mail");
-            $body->addPart(new MailPart("Some Data"));
-            $body->addPart(new MailPart("Some other Data"));
-            echo $body->render();
-
-        }
-    }
+Assert::noError(function () {
+    $body = new MailBody();
+    $body->addTo("Matthias Leuffen <matthes@leuffen.de>");
+    $body->setSubject("Test Mail");
+    $body->addPart(new MailPart("Some Data"));
+    $body->addPart(new MailPart("Some other Data"));
+    echo $body->render();
+});

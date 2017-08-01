@@ -6,7 +6,7 @@
  * Time: 13:27
  */
 
-    namespace de\leuffen\template_mailer;
+    namespace Leuffen\TemplateMailer;
 
 
     class MIME {

@@ -1,0 +1,28 @@
+{
+    "name": "leuffen/template-mailer",
+    "type": "library",
+    "description": "Send mails including template engine",
+    "keywords": ["Mail", "template"],
+    "homepage": "https://leuffen.de",
+    "license": "Proprietary",
+    "authors": [
+        {
+            "name": "Matthias Leuffen",
+            "email": "matthes@leuffen.de"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "text/template": "^2.0"
+    },
+    "require-dev": {
+        "nette/tester": "^1.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leuffen\\TemplateMailer\\": "src"
+
+        }
+    },
+    "minimum-stability": "dev"
+}

@@ -8,7 +8,7 @@
 
 
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 class FileAttachment extends MailPart {

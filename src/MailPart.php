@@ -7,7 +7,7 @@
  */
 
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 class MailPart {

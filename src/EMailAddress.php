@@ -7,10 +7,11 @@
  */
 
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
-use de\leuffen\template_mailer\exception\InvalidEMailAddressException;
+
+use Leuffen\TemplateMailer\Exception\InvalidEMailAddressException;
 
 class EMailAddress {
 
@@ -32,7 +33,7 @@ class EMailAddress {
             $this->mAddr = $matches[1];
             return;
         }
-        throw new InvalidEMailAddressException ("'$value' is no valid eMail Address.");
+        throw new InvalidEMailAddressException("'$value' is no valid eMail Address.");
     }
 
 

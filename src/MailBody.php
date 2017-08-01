@@ -7,11 +7,11 @@
  */
 
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
-use de\leuffen\template_mailer\exception\InvalidEMailAddressException;
-use de\leuffen\template_mailer\exception\MailException;
+use Leuffen\TemplateMailer\Exception\InvalidEMailAddressException;
+use Leuffen\TemplateMailer\Exception\MailException;
 
 class MailBody {
 

@@ -6,7 +6,7 @@
  * Time: 9:29 PM
  */
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 

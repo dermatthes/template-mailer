@@ -6,15 +6,13 @@
  * Time: 18:41
  */
 
-use de\leuffen\template_mailer\MailBody;
-use de\leuffen\template_mailer\MailPart;
 
-require __DIR__ . "/../../src/autoloader.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
 $fn = function ($toEmail) {
 
-    $body = new MailBody($toEmail, "[template-mailer] New SimpleMailDemo Subject");
-    $body->addPart(new MailPart("Some text content"));
+    $body = new \Leuffen\TemplateMailer\MailBody($toEmail, "[template-mailer] New SimpleMailDemo Subject");
+    $body->addPart(new \Leuffen\TemplateMailer\MailPart("Some text content"));
     $body->send();
     echo "<span>Mail successfully sent</span>";
 };

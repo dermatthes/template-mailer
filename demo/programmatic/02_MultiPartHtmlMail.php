@@ -6,18 +6,15 @@
  * Time: 18:41
  */
 
-use de\leuffen\template_mailer\FileAttachment;
-use de\leuffen\template_mailer\MailBody;
-use de\leuffen\template_mailer\MailPart;
 
-require __DIR__ . "/../../autoloader.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
 $fn = function ($toEmail) {
 
-    $body = new MailBody($toEmail, "[template-mailer] New MultiPartHtmlMail Subject");
-    $body->addPart(new MailPart("Some fallback text content for text-only readers."));
-    $body->addPart(new MailPart("<h1>This is Html</h1><p>With nice formatting</p>", "text/html"));
-    $body->addPart(new FileAttachment("test.jpg"));
+    $body = new \Leuffen\TemplateMailer\MailBody($toEmail, "[template-mailer] New MultiPartHtmlMail Subject");
+    $body->addPart(new \Leuffen\TemplateMailer\MailPart("Some fallback text content for text-only readers."));
+    $body->addPart(new \Leuffen\TemplateMailer\MailPart("<h1>This is Html</h1><p>With nice formatting</p>", "text/html"));
+    $body->addPart(new \Leuffen\TemplateMailer\FileAttachment("test.jpg"));
     $body->send();
 
 

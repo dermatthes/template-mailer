@@ -6,10 +6,11 @@
  * Time: 9:25 PM
  */
 
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
-use de\leuffen\template_mailer\exception\MailTemplateException;
-use de\leuffen\text_template\TextTemplate;
+
+use Leuffen\TemplateMailer\Exception\MailTemplateException;
+use Leuffen\TextTemplate\TextTemplate;
 
 class MailTemplateParser {
 

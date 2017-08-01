@@ -5,7 +5,7 @@
  * Date: 7/20/15
  * Time: 9:35 PM
  */
-namespace de\leuffen\template_mailer;
+namespace Leuffen\TemplateMailer;
 
 
 

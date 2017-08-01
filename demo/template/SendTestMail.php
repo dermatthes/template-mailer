@@ -5,11 +5,8 @@
  * Date: 7/21/15
  * Time: 10:40 PM
  */
-use de\leuffen\template_mailer\MailBody;
-use de\leuffen\template_mailer\MailPart;
-use de\leuffen\template_mailer\MailTemplateParser;
 
-require __DIR__ . "/../../test/bootstrap.inc.php";
+require __DIR__ . "/../../vendor/autoload.php";
 
 
 
@@ -17,7 +14,7 @@ $fn = function ($toEmail) {
     $data = require(__DIR__ . "/_data.php");
     $data["recipient"] = $toEmail;
 
-    $parser = new MailTemplateParser();
+    $parser = new \Leuffen\TemplateMailer\MailTemplateParser();
     $parser->loadTemplate(file_get_contents("tpl/".basename($_POST["template"])));
     $parser->send($data);
 
