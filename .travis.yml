@@ -43,7 +43,7 @@ install:
 
 
 script:
-  - ./vendor/bin/tester -p $TESTER_PHP_BIN -s ./test/
+  - ./vendor/bin/tester -p $TESTER_PHP_BIN -s ./test/**/**
 
 after_failure:
   # Prints *.actual files content
