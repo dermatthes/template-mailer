@@ -11,21 +11,10 @@ namespace Leuffen\TemplateMailer;
 
 class MockLocalDeliveryAgent implements MailDeliveryAgent {
 
-
-
-    public function getLastMail () {
-
-    }
-
-    public function getLastMails () {
-
-    }
-
-    public function clear () {
-
-    }
+    public $lastMail;
 
     public function send(MailBody $mail) {
-
+        $mail->render($mailData);
+        $this->lastMail = $mailData;
     }
 }

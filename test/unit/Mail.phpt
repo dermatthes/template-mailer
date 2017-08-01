@@ -29,7 +29,11 @@ EOT;
 
 
 Assert::noError(function () use ($template) {
+    MailKernel::SetMailDeliveryAgent(new MockLocalDeliveryAgent());
     $parser = new MailTemplateParser();
     $parser->loadTemplate($template);
     $parser->send ([]);
+
+    Assert::equal("matthes@leuffen.de", MailKernel::GetMailDeliveryAgent()->lastMail["To"]);
+    Assert::equal("[template-mailer] Unit Test Testmail", MailKernel::GetMailDeliveryAgent()->lastMail["Subject"]);
 });
