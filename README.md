@@ -1,5 +1,11 @@
 # Template-Mailer
 
+[![Downloads this Month](https://img.shields.io/packagist/dm/leuffen/template-mailer.svg)](https://packagist.org/packages/leuffen/template-mailer)
+[<img src="https://travis-ci.org/dermatthes/template-mailer.svg">](https://travis-ci.org/dermatthes/template-mailer)
+[![Latest Stable Version](https://poser.pugx.org/leuffen/template-mailer/v/stable)](https://github.com/dermatthes/template-mailer/releases)
+[![Supports PHP 5.4+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-5_4plus.png)](http://php.net/)
+[![Supports PHP 7.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_0plus.png)](http://php.net/)
+
 This project combines an powerfull but easy-to-use OOP interface to Multipart-Mime-Mails in conjunction
  with a easy to learn template-language for defining complete multipart-messages within one string. (Including
  subject, from, other headers, all kinds of message-parts).

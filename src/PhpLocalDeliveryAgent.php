@@ -10,7 +10,9 @@ namespace Leuffen\TemplateMailer;
 
 
 
-use de\leuffen\template_mailer\exception\MailException;
+
+
+use Leuffen\TemplateMailer\Exception\MailException;
 
 class PhpLocalDeliveryAgent implements MailDeliveryAgent {
 
