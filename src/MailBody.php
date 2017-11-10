@@ -53,6 +53,8 @@ class MailBody {
     private $mBoundary = NULL;
 
 
+    private $mMailData = [];
+
 
     public function __construct ($toEMail=NULL, $subject=NULL, $from=NULL) {
         if ($toEMail !== NULL) {
@@ -369,6 +371,7 @@ class MailBody {
 
             $mail = $headers . $optHeaders . $eol;
             $mail .= $content;
+            $this->mMailData = $mailData;
             return $this->_cleanLfContent($mail);
         }
 
@@ -390,6 +393,7 @@ class MailBody {
         $content .= "--" . $this->__getBoundary() . "--";
         $mailData["content"] = $this->_cleanLfContent($content);
 
+        $this->mMailData = $mailData;
         return $headers . $optHeaders . $eol . $content;
     }
 
@@ -405,6 +409,16 @@ class MailBody {
      */
     public function send() {
         MailKernel::GetMailDeliveryAgent()->send($this);
+    }
+
+    /**
+     * @return bool|mixed
+     */
+    public function getRenderedMailText() {
+        if ( ! isset($this->mMailData["content"])) {
+            return FALSE;
+        }
+        return $this->mMailData["content"];
     }
 
 }

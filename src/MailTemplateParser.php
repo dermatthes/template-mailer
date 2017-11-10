@@ -309,7 +309,9 @@ class MailTemplateParser {
      * @return MailBody
      */
     public function send ($data) {
-        $this->apply($data)->send();
+        $mailBody = $this->apply($data);
+        $mailBody->send();
+        return $mailBody;
     }
 
 }
