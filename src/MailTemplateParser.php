@@ -25,8 +25,9 @@ class MailTemplateParser {
     private $mFixedBoundary = FALSE;
 
     public function __construct (TextTemplate $textTemplate=NULL) {
-        if ($textTemplate === NULL)
+        if ($textTemplate === NULL) {
             $textTemplate = new TextTemplate();
+        }
         $this->mTextTemplate = $textTemplate;
     }
 
@@ -87,8 +88,9 @@ class MailTemplateParser {
         foreach ($lines as $line) {
 
             $line = trim ($line);
-            if (strpos($line, ":") === FALSE)
+            if (strpos($line, ":") === FALSE) {
                 continue;
+            }
 
             list ($origHeaderName, $headerValue) = explode(":", $line, 2);
             $origHeaderName = trim($origHeaderName);
@@ -99,22 +101,25 @@ class MailTemplateParser {
                     $recipients = str_replace(";", ",", $headerValue);
                     $recipients = explode(",", $recipients);
 
-                    foreach ($recipients as $curRecipient)
+                    foreach ($recipients as $curRecipient) {
                         $mailBody->addTo($curRecipient, TRUE);
+                    }
                     break;
 
                 case "BCC":
                     $recipients = str_replace(";", ",", $headerValue);
                     $recipients = explode(",", $recipients);
-                    foreach ($recipients as $curRecipient)
+                    foreach ($recipients as $curRecipient) {
                         $mailBody->addBcc($curRecipient, TRUE);
+                    }
                     break;
 
                 case "CC":
                     $recipients = str_replace(";", ",", $headerValue);
                     $recipients = explode(",", $recipients);
-                    foreach ($recipients as $curRecipient)
+                    foreach ($recipients as $curRecipient) {
                         $mailBody->addCc($curRecipient);
+                    }
                     break;
 
                 case "CONTENT-TYPE":
@@ -134,8 +139,9 @@ class MailTemplateParser {
                     break;
 
                 default:
-                    if (trim ($origHeaderName) != "" && trim  ($headerValue) != "")
+                    if (trim ($origHeaderName) != "" && trim  ($headerValue) != "") {
                         $mailBody->addHeader($origHeaderName, $headerValue);
+                    }
             }
         }
     }
@@ -177,22 +183,29 @@ class MailTemplateParser {
 
 
                     $contentType = "text/plain";
-                    if (isset ($attribs["CONTENTTYPE"]))
+                    if (isset ($attribs["CONTENTTYPE"])) {
                         $mailPart->setContentType($contentType = $attribs["CONTENTTYPE"]);
-                    if (isset ($attribs["CHARSET"]))
+                    }
+                    if (isset ($attribs["CHARSET"])) {
                         $mailPart->setCharset($attribs["CHARSET"]);
-                    if (isset ($attribs["CONTENTDISPOSITION"]))
+                    }
+                    if (isset ($attribs["CONTENTDISPOSITION"])) {
                         $mailPart->setContentDisposition($attribs["CONTENTDISPOSITION"]);
-                    if (isset ($attribs["FILENAME"]))
+                    }
+                    if (isset ($attribs["FILENAME"])) {
                         $mailPart->setContentDispositionFileName($attribs["FILENAME"]);
-                    if (isset ($attribs["TOKEN"]))
+                    }
+                    if (isset ($attribs["TOKEN"])) {
                         $mailPart->setContentDispositionToken($attribs["TOKEN"]);
-                    if (isset ($attribs["ID"]))
+                    }
+                    if (isset ($attribs["ID"])) {
                         $mailPart->setContentId($attribs["ID"]);
+                    }
 
                     $contentTransferEncoding = "8Bit";
-                    if (isset ($attribs["CONTENTTRANSFERENCODING"]))
+                    if (isset ($attribs["CONTENTTRANSFERENCODING"])) {
                         $contentTransferEncoding = $attribs["CONTENTTRANSFERENCODING"];
+                    }
                     $mailPart->setContentTransferEncoding($contentTransferEncoding);
 
                     // Parse the content
@@ -242,8 +255,9 @@ class MailTemplateParser {
             $content = $textTemplate->apply($data);
 
             $contentTransferEncoding = $mailBody->getContentTransferEncoding();
-            if ($contentTransferEncoding === NULL)
+            if ($contentTransferEncoding === NULL) {
                 $mailBody->setContentTransferEncoding("8Bit");
+            }
             $encode = new MailContentTransferEncoder();
 
             $content = $encode->encode($content, $mailBody->getContentTransferEncoding());
@@ -257,11 +271,13 @@ class MailTemplateParser {
 
     private function _splitTemplate ($template, &$header, &$body) {
         $headerPos = strpos ($template, "\n\n");
-        if ($headerPos === FALSE)
+        if ($headerPos === FALSE) {
             $headerPos = strpos($template, "\r\n\r\n");
+        }
 
-        if ($headerPos === FALSE)
+        if ($headerPos === FALSE) {
             throw new MailTemplateException("No mail header found in mail template: '{$template}'");
+        }
 
         $header = substr ($template, 0, $headerPos);
         $body = substr ($template, $headerPos+2);
@@ -276,8 +292,9 @@ class MailTemplateParser {
         $this->_splitTemplate($template, $header, $body);
 
         $mail = new MailBody();
-        if ($this->mFixedBoundary)
+        if ($this->mFixedBoundary) {
             $mail->__setFixedBoundary("--=_NextPart_000_UNIT_TESTING_BOUNDARY_000");
+        }
         $this->_parseHeader($mail,$header, $data);
         $this->_parseBody($mail, $body, $data);
         return $mail;
@@ -294,6 +311,5 @@ class MailTemplateParser {
     public function send ($data) {
         $this->apply($data)->send();
     }
-
 
 }

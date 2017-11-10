@@ -9,18 +9,18 @@
 namespace Leuffen\TemplateMailer;
 
 
-
-
-
 use Leuffen\TemplateMailer\Exception\MailException;
+
 
 class PhpLocalDeliveryAgent implements MailDeliveryAgent {
 
 
     public function send(MailBody $mail) {
         $mail->render($mailData);
-        if ( ! mail ($mailData["To"], $mailData["Subject"], $mailData["content"], $mailData["headers"]))
+        if ( ! mail ($mailData["To"], $mailData["Subject"], $mailData["content"], $mailData["headers"])) {
             throw new MailException("Cannot send mail. mail() reported error. Check local delivery agent.");
+        }
 
     }
+
 }

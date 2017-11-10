@@ -100,8 +100,9 @@ class MailPart {
      * @return $this
      */
     public function setContentDispositionFileName ($fileName) {
-        if ($this->mContentDisposition === NULL)
+        if ($this->mContentDisposition === NULL) {
             $this->mContentDisposition = "attachment";
+        }
         $this->mContentDispositionFileName = $fileName;
         return $this;
     }
@@ -111,8 +112,9 @@ class MailPart {
      * @return $this
      */
     public function setContentDispositionToken ($token) {
-        if ($this->mContentDisposition === NULL)
+        if ($this->mContentDisposition === NULL) {
             $this->mContentDisposition = "attachment";
+        }
         $this->mContentDispositionToken = $token;
         return $this;
     }
@@ -122,8 +124,9 @@ class MailPart {
      * @return $this
      */
     public function setContentId ($id) {
-        if ($this->mContentDisposition === NULL)
+        if ($this->mContentDisposition === NULL) {
             $this->mContentDisposition = "attachment";
+        }
         $this->mContentId = $id;
         return $this;
     }
@@ -157,20 +160,22 @@ class MailPart {
         $this->_extendHeader($headers, "Content-transfer-encoding", $this->mContentTransferEncoding);
         if ($this->mContentDisposition !== NULL) {
             $dispo = $this->mContentDisposition;
-            if ($this->mContentDispositionFileName !== NULL)
+            if ($this->mContentDispositionFileName !== NULL) {
                 $dispo .= "; filename=\"" . addslashes($this->mContentDispositionFileName) . "\"";
-            if ($this->mContentDispositionToken !== NULL)
+            }
+            if ($this->mContentDispositionToken !== NULL) {
                 $dispo .= "; token=\"". addslashes($this->mContentDispositionToken) . "\"";
+            }
             $this->_extendHeader($headers, "Content-Disposition", $dispo);
         }
-        if ($this->mContentId !== NULL)
+        if ($this->mContentId !== NULL) {
             $this->_extendHeader($headers, "Content-Id",  "<{$this->mContentId}>");
+        }
 
         $mailPart = $headers . $eol;
 
         $mailPart .= $this->mContent . $eol;
         return $mailPart;
     }
-
 
 }

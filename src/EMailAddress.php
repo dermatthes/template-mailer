@@ -10,7 +10,6 @@
 namespace Leuffen\TemplateMailer;
 
 
-
 use Leuffen\TemplateMailer\Exception\InvalidEMailAddressException;
 
 class EMailAddress {
@@ -36,12 +35,10 @@ class EMailAddress {
         throw new InvalidEMailAddressException("'$value' is no valid eMail Address.");
     }
 
-
-
-
     public function render() {
-        if ($this->mName !== NULL)
+        if ($this->mName !== NULL) {
             return "{$this->mName} <{$this->mAddr}>";
+        }
         return "{$this->mAddr}";
     }
 

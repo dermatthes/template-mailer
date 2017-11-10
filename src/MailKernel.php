@@ -66,12 +66,12 @@ class MailKernel {
      */
     public static function GetMailDeliveryAgent ($alias="default") {
         if ( ! isset (self::$sMailDeliveryAgent[$alias])) {
-            if ($alias != "default")
+            if ($alias != "default") {
                 throw new \InvalidArgumentException("No MailDeliveryAgent registered with alias '$alias'. Check the mailsystem was properly initialized.");
+            }
             self::$sMailDeliveryAgent["default"] = new PhpLocalDeliveryAgent();
         }
         return self::$sMailDeliveryAgent[$alias];
     }
 
 }
-

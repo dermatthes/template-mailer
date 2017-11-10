@@ -17,4 +17,5 @@ class MockLocalDeliveryAgent implements MailDeliveryAgent {
         $mail->render($mailData);
         $this->lastMail = $mailData;
     }
+
 }

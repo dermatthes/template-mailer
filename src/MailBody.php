@@ -55,12 +55,15 @@ class MailBody {
 
 
     public function __construct ($toEMail=NULL, $subject=NULL, $from=NULL) {
-        if ($toEMail !== NULL)
+        if ($toEMail !== NULL) {
             $this->addTo($toEMail);
-        if ($subject !== NULL)
+        }
+        if ($subject !== NULL) {
             $this->setSubject($subject);
-        if ($from !== NULL)
+        }
+        if ($from !== NULL) {
             $this->setFrom($from);
+        }
     }
 
     /**
@@ -99,10 +102,11 @@ class MailBody {
             $this->mHeader[$headerName] = [ $value ];
             return $this;
         }
-        if ( ! is_array($this->mHeader[$headerName]))
+        if ( ! is_array($this->mHeader[$headerName])) {
             $this->mHeader[$headerName] = [ $this->mHeader[$headerName] ];
-        else
+        } else {
             $this->mHeader[$headerName][] = $value;
+        }
         return $this;
     }
 
@@ -115,11 +119,13 @@ class MailBody {
      */
     public function addTo ($email, $softFail = FALSE) {
         try {
-            if (!$email instanceof EMailAddress)
+            if ( ! $email instanceof EMailAddress) {
                 $email = new EMailAddress($email);
+            }
         } catch (InvalidEMailAddressException $e) {
-            if ( ! $softFail)
+            if ( ! $softFail) {
                 throw $e;
+            }
             return $this;
         }
         $this->mTo[] = $email;
@@ -134,11 +140,13 @@ class MailBody {
      */
     public function addBcc ($email, $softFail = FALSE) {
         try {
-            if (!$email instanceof EMailAddress)
+            if ( ! $email instanceof EMailAddress) {
                 $email = new EMailAddress($email);
+            }
         } catch (InvalidEMailAddressException $e) {
-            if ( ! $softFail)
+            if ( ! $softFail) {
                 throw $e;
+            }
             return $this;
         }
         $this->mBcc[] = $email;
@@ -173,11 +181,13 @@ class MailBody {
      */
     public function addCc ($email, $softFail = FALSE) {
         try {
-            if (!$email instanceof EMailAddress)
+            if ( ! $email instanceof EMailAddress) {
                 $email = new EMailAddress($email);
+            }
         } catch (InvalidEMailAddressException $e) {
-            if ( ! $softFail)
+            if ( ! $softFail) {
                 throw $e;
+            }
             return $this;
         }
         $this->mCc[] = $email;
@@ -197,8 +207,9 @@ class MailBody {
 
     public function setFrom ($email) {
         try {
-            if (!$email instanceof EMailAddress)
+            if ( ! $email instanceof EMailAddress) {
                 $email = new EMailAddress($email);
+            }
         } catch (InvalidEMailAddressException $e) {
             return $this;
         }
@@ -252,8 +263,9 @@ class MailBody {
 
     private function _getEMailString (array $objArr) {
         $ret = [];
-        foreach ($objArr as $curObj)
+        foreach ($objArr as $curObj) {
             $ret[] = $curObj->render();
+        }
         return implode(", ", $ret);
     }
 
@@ -291,48 +303,54 @@ class MailBody {
         // Headers that are handled by mail()
         $optHeaders = "";
 
-        if (count ($this->mTo) == 0)
+        if (count ($this->mTo) == 0) {
             throw new MailException("No recipient specified. You need to specify at least one recipient in the 'To:'-header");
-        if ($this->mSubject === NULL)
+        }
+        if ($this->mSubject === NULL) {
             throw new MailException("No subject specified. You need to specify a 'Subject:' - header");
+        }
         $this->_extendHeader($optHeaders, "Subject", $mailData["Subject"] = $this->mSubject);
 
 
         // Headers to be passed additionally to mail()
         $headers = "";
-        if ($this->mFrom !== NULL)
+        if ($this->mFrom !== NULL) {
             $this->_extendHeader($headers, "From", $this->mFrom->render());
+        }
 
         // Check Bypass for CC and BCC
         if (MailKernel::GetGlobalBypass() === FALSE) {
             $this->_extendHeader($optHeaders, "To", $mailData["To"] = $this->_getEMailString($this->mTo));
 
-            if (count($this->mBcc) > 0)
+            if (count($this->mBcc) > 0) {
                 $this->_extendHeader($headers, "Bcc", $this->_getEMailString($this->mBcc));
+            }
 
-            if (count($this->mCc) > 0)
+            if (count($this->mCc) > 0) {
                 $this->_extendHeader($headers, "Cc", $this->_getEMailString($this->mCc));
+            }
+
         } else {
             $this->_extendHeader($headers, "X-GlobalBypass-To", MailKernel::GetGlobalBypass());
             $mailData["To"] = MailKernel::GetGlobalBypass();
 
             $this->_extendHeader($optHeaders, "X-Bypass-Orig-To", $this->_getEMailString($this->mTo));
-            if (count($this->mBcc) > 0)
+            if (count($this->mBcc) > 0) {
                 $this->_extendHeader($headers, "X-Bypass-Orig-Bcc", $this->_getEMailString($this->mBcc));
+            }
 
-            if (count($this->mCc) > 0)
+            if (count($this->mCc) > 0) {
                 $this->_extendHeader($headers, "X-Bypass-Orig-Cc", $this->_getEMailString($this->mCc));
+            }
         }
 
-
-        foreach ($this->mHeader as $key => $val)
+        foreach ($this->mHeader as $key => $val) {
             $this->_extendHeader($headers, $key, $val);
+        }
 
-
-        if (count ($this->mParts) == 0)
+        if (count ($this->mParts) == 0) {
             throw new MailException("No mail part specified. You need to add at least one MailPart.");
-
-
+        }
 
         if (count ($this->mParts) == 1 && ($this->mContentType === NULL || in_array(strtolower($this->mContentType), ["text/plain", "text/html"]))) {
 
@@ -358,8 +376,9 @@ class MailBody {
         $this->_extendHeader($headers, "MIME-Version", "1.0");
 
         $contentType = $this->mContentType;
-        if ($contentType === NULL)
+        if ($contentType === NULL) {
             $contentType = "multipart/mixed";
+        }
 
         $this->_extendHeader($headers, "Content-Type", "$contentType; boundary=\"{$this->__getBoundary()}\"");
         $mailData["headers"] = $headers;
@@ -373,7 +392,6 @@ class MailBody {
 
         return $headers . $optHeaders . $eol . $content;
     }
-
 
     /**
      * Send the E-Mail using the configured DeliveryAgent in MailKernel
