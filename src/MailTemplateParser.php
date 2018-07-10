@@ -63,9 +63,14 @@ class MailTemplateParser {
     }
 
 
+    /**
+     * @param MailBody $mailBody
+     * @param $headerStr
+     * @param $data
+     * @throws Exception\InvalidEMailAddressException
+     * @throws \Leuffen\TextTemplate\TemplateParsingException
+     */
     private function _parseHeader (MailBody $mailBody, $headerStr, $data) {
-
-
         $textTemplate = clone $this->mTextTemplate;
         $textTemplate->addFilter("_DEFAULT_", function ($input) {
             // Replace evil characters in header lines
@@ -147,6 +152,11 @@ class MailTemplateParser {
     }
 
 
+    /**
+     * @param $xmlAttribStr
+     * @return array
+     * @throws MailTemplateException
+     */
     private function _getOptions ($xmlAttribStr) {
         $ret = [];
         $rest = preg_replace_callback('/([a-z0-9]+)=([\"\']?)(.*?)\2/i',
@@ -161,6 +171,12 @@ class MailTemplateParser {
     }
 
 
+    /**
+     * @param MailBody $mailBody
+     * @param $bodyString
+     * @param $data
+     * @throws \Leuffen\TextTemplate\TemplateParsingException
+     */
     private function _parseBody (MailBody $mailBody, $bodyString, $data) {
 
         if (preg_match ('/\<mailPart.*\>/im', $bodyString)) {
@@ -269,6 +285,12 @@ class MailTemplateParser {
     }
 
 
+    /**
+     * @param $template
+     * @param $header
+     * @param $body
+     * @throws MailTemplateException
+     */
     private function _splitTemplate ($template, &$header, &$body) {
         $headerPos = strpos ($template, "\n\n");
         if ($headerPos === FALSE) {
@@ -286,6 +308,9 @@ class MailTemplateParser {
     /**
      * @param $data
      * @return MailBody
+     * @throws Exception\InvalidEMailAddressException
+     * @throws MailTemplateException
+     * @throws \Leuffen\TextTemplate\TemplateParsingException
      */
     public function apply ($data) {
         $template = str_replace("\r\n", "\n", $this->mTemplate);
@@ -307,6 +332,9 @@ class MailTemplateParser {
      *
      * @param $data
      * @return MailBody
+     * @throws Exception\InvalidEMailAddressException
+     * @throws MailTemplateException
+     * @throws \Leuffen\TextTemplate\TemplateParsingException
      */
     public function send ($data) {
         $mailBody = $this->apply($data);

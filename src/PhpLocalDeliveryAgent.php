@@ -15,6 +15,10 @@ use Leuffen\TemplateMailer\Exception\MailException;
 class PhpLocalDeliveryAgent implements MailDeliveryAgent {
 
 
+    /**
+     * @param MailBody $mail
+     * @throws MailException
+     */
     public function send(MailBody $mail) {
         $mail->render($mailData);
         if ( ! mail ($mailData["To"], $mailData["Subject"], $mailData["content"], $mailData["headers"])) {

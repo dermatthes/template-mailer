@@ -55,8 +55,23 @@ class MailBody {
 
     private $mMailData = [];
 
+    /**
+     * @var EMailAddress
+     */
+    private $mReplyTo = NULL;
 
-    public function __construct ($toEMail=NULL, $subject=NULL, $from=NULL) {
+    private $mIsMultiPartMail = FALSE;
+
+
+    /**
+     * MailBody constructor.
+     * @param null $toEMail
+     * @param null $subject
+     * @param null $from
+     * @param null $replyTo
+     * @throws InvalidEMailAddressException
+     */
+    public function __construct ($toEMail=NULL, $subject=NULL, $from=NULL, $replyTo=NULL) {
         if ($toEMail !== NULL) {
             $this->addTo($toEMail);
         }
@@ -65,6 +80,9 @@ class MailBody {
         }
         if ($from !== NULL) {
             $this->setFrom($from);
+        }
+        if ($replyTo !== NULL) {
+            $this->setReplyTo($from);
         }
     }
 
@@ -112,12 +130,35 @@ class MailBody {
         return $this;
     }
 
+    /**
+     * @param $email
+     * @param bool $softFail
+     * @return $this
+     * @throws InvalidEMailAddressException
+     */
+    public function setReplyTo ($email, $softFail = FALSE) {
+        try {
+            if ( ! $email instanceof EMailAddress) {
+                $email = new EMailAddress($email);
+            }
+        } catch (InvalidEMailAddressException $e) {
+            if ( ! $softFail) {
+                throw $e;
+            }
+            return $this;
+        }
+        $this->mReplyTo = $email;
+        return $this;
+    }
+
 
     /**
      * Add Original Recipient
      *
      * @param $email
+     * @param bool $softFail
      * @return $this
+     * @throws InvalidEMailAddressException
      */
     public function addTo ($email, $softFail = FALSE) {
         try {
@@ -136,9 +177,10 @@ class MailBody {
 
     /**
      * Set BlindCopyRecipient
-     *
      * @param $email
+     * @param bool $softFail
      * @return $this
+     * @throws InvalidEMailAddressException
      */
     public function addBcc ($email, $softFail = FALSE) {
         try {
@@ -179,7 +221,9 @@ class MailBody {
      * Set visual copy recipient
      *
      * @param $email
+     * @param bool $softFail
      * @return $this
+     * @throws InvalidEMailAddressException
      */
     public function addCc ($email, $softFail = FALSE) {
         try {
@@ -197,6 +241,13 @@ class MailBody {
     }
 
     /**
+     * @return EMailAddress[]
+     */
+    public function getCC () {
+        return $this->mCc;
+    }
+
+    /**
      * Sets the Mail Subject
      *
      * @param $subject
@@ -205,6 +256,10 @@ class MailBody {
     public function setSubject ($subject) {
         $this->mSubject = $subject;
         return $this;
+    }
+
+    public function getSubject () {
+        return $this->mSubject;
     }
 
     public function setFrom ($email) {
@@ -217,6 +272,27 @@ class MailBody {
         }
         $this->mFrom = $email;
         return $this;
+    }
+
+    /**
+     * @return EMailAddress
+     */
+    public function getFrom () {
+        return $this->mFrom;
+    }
+
+    /**
+     * @return EMailAddress
+     */
+    public function getReplyTo () {
+        return $this->mReplyTo;
+    }
+
+    /**
+     * @return EMailAddress[]
+     */
+    public function getTo () {
+        return $this->mTo;
     }
 
     /**
@@ -259,11 +335,14 @@ class MailBody {
      */
     public function addPart (MailPart $part) {
         $this->mParts[] = $part;
+        if ($this->mParts > 1) {
+            $this->mIsMultiPartMail = TRUE;
+        }
         return $this;
     }
 
 
-    private function _getEMailString (array $objArr) {
+    public function _getEMailString (array $objArr) {
         $ret = [];
         foreach ($objArr as $curObj) {
             $ret[] = $curObj->render();
@@ -297,6 +376,11 @@ class MailBody {
     }
 
 
+    /**
+     * @param null $mailData
+     * @return mixed|string
+     * @throws MailException
+     */
     public function render (&$mailData=NULL) {
         $eol = MailKernel::EOL;
 
@@ -330,6 +414,10 @@ class MailBody {
 
             if (count($this->mCc) > 0) {
                 $this->_extendHeader($headers, "Cc", $this->_getEMailString($this->mCc));
+            }
+
+            if ($this->mReplyTo !== NULL ) {
+                $this->_extendHeader($headers, "Reply To", $this->_getEMailString($this->mReplyTo));
             }
 
         } else {
@@ -412,6 +500,13 @@ class MailBody {
     }
 
     /**
+     * @return MailPart[]
+     */
+    public function getMailParts () {
+        return $this->mParts;
+    }
+
+    /**
      * @return bool|mixed
      */
     public function getRenderedMailText() {
@@ -421,4 +516,7 @@ class MailBody {
         return $this->mMailData["content"];
     }
 
+    public function getIsMultiPartMail () {
+        return $this->mIsMultiPartMail;
+    }
 }

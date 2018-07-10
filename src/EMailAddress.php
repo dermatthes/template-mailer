@@ -17,6 +17,11 @@ class EMailAddress {
     private $mName = NULL;
     private $mAddr = NULL;
 
+    /**
+     * EMailAddress constructor.
+     * @param $value
+     * @throws InvalidEMailAddressException
+     */
     public function __construct ($value) {
         $value = trim ($value);
         if (preg_match ('/^([\"\']?)(.*?)\1 <([a-z0-9\.\-\_\@]+)>$/i', $value, $matches)) {
@@ -40,6 +45,14 @@ class EMailAddress {
             return "{$this->mName} <{$this->mAddr}>";
         }
         return "{$this->mAddr}";
+    }
+
+    public function getName () {
+        return $this->mName;
+    }
+
+    public function getAddr () {
+        return $this->mAddr;
     }
 
 }
