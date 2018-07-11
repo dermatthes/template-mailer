@@ -15,9 +15,6 @@
 
     $dir = __DIR__ . "/tpls/03_manualSmtpTestTextMail";
 
-
-
-    //$mailDeliveryAgent = new SmtpDeliveryAgent("smtp1.fuman.de");
     $mailDeliveryAgent = new SmtpDeliveryAgent("localhost");
     MailKernel::SetMailDeliveryAgent($mailDeliveryAgent);
 

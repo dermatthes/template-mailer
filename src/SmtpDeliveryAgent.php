@@ -34,7 +34,7 @@
         private $mMailContent;
 
 
-        public function __construct($host, $port = "25", $username = NULL, $password = NULL, $smtpDebug = 4, $smtpAuth = false, $smtpSecure = "tls") {
+        public function __construct($host, $port = "25", $username = NULL, $password = NULL, $smtpDebug = 0, $smtpAuth = false, $smtpSecure = "tls") {
             $this->mHost = $host;
             $this->mUsername = $username;
             $this->mPassword = $password;

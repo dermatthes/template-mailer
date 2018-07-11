@@ -218,7 +218,17 @@ Example:
 $mailTemplateParser->getTextTemplateParser()->addFilter("price", function ($input) { return number_format($input) });
 ```
 
+### Changing the Deliveryagent to an non local SMTP Server
 
+To change the DeliveryAgent, it must be set in the MailKernel, via the static function SetMailDeliveryAgent
+The SmtpDeliveryAgent uses the class PHPMailer to send an SMTP Message to the chosen Server
+
+Example:
+
+```
+$mailDeliveryAgent = new SmtpDeliveryAgent("localhost");
+MailKernel::SetMailDeliveryAgent($mailDeliveryAgent);
+```
 
 ## About
 Template-Mailer was written by Matthias Leuffen <http://leuffen.de>
