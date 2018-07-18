@@ -60,6 +60,13 @@
             $partData = $this->mMailContent->__getIntData();
 
             $phpMailer = new PHPMailer(TRUE);
+
+            //Temporary take charset from first mailpart
+            //TODO: Needs to be refactored
+            if ( ! is_null($partData['charset']) ) {
+                $phpMailer->CharSet = $partData['charset'];
+            }
+
             $phpMailer->SMTPAutoTLS = false;
             try {
                 //Server settings

@@ -4,7 +4,7 @@
     "description": "Send mails including template engine",
     "keywords": ["Mail", "template"],
     "homepage": "https://leuffen.de",
-    "license": "Proprietary",
+    "license": "mit",
     "authors": [
         {
             "name": "Matthias Leuffen",
@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.5",
-        "text/template": "^2.3",
+        "text/template": "~2.3",
         "phpmailer/phpmailer": "~6.0"
     },
     "require-dev": {
