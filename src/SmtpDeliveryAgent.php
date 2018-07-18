@@ -10,6 +10,8 @@
 
 
     use Leuffen\TemplateMailer\Exception\MailException;
+    use Leuffen\TemplateMailer\Exception\MailTemplateException;
+    use Leuffen\TemplateMailer\Exception\SmtpDeliveryException;
     use PHPMailer\PHPMailer\PHPMailer;
 
     class SmtpDeliveryAgent implements MailDeliveryAgent {
@@ -34,7 +36,7 @@
         private $mMailContent;
 
 
-        public function __construct($host, $port = "25", $username = NULL, $password = NULL, $smtpDebug = 0, $smtpAuth = false, $smtpSecure = "tls") {
+        public function __construct($host, $port = "25", $username = "", $password = "", $smtpDebug = 0, $smtpAuth = false, $smtpSecure = "tls") {
             $this->mHost = $host;
             $this->mUsername = $username;
             $this->mPassword = $password;
@@ -46,13 +48,11 @@
 
         /**
          * @param MailBody $mailBody
-         * @throws Exception\MailException
+         * @throws MailException
+         * @throws SmtpDeliveryException
          */
         public function send (MailBody $mailBody) {
 
-            if ($mailBody->getIsMultiPartMail()) {
-                //throw new MailException("SmtpDeliveryAgent only works on singlePartMails!");
-            }
             $mailBody->render($mailData);
 
             $this->mMailContent = $mailBody->getMailParts()[0];
@@ -67,8 +67,8 @@
                 $phpMailer->isSMTP();                                   // Set mailer to use SMTP
                 $phpMailer->Host = $this->mHost;                        // Specify main and backup SMTP servers
                 $phpMailer->SMTPAuth = $this->mSmtpAuth;                // Enable SMTP authentication
-                //$phpMailer->Username = $this->mUsername;                // SMTP username
-                //$phpMailer->Password = $this->mPassword;                // SMTP password
+                $phpMailer->Username = $this->mUsername;                // SMTP username
+                $phpMailer->Password = $this->mPassword;                // SMTP password
                 //$phpMailer->SMTPSecure = $this->mSmtpSecure;          // Enable TLS encryption, `ssl` also accepted
                 $phpMailer->Port = $this->mPort;                        // TCP port to connect to
 
@@ -97,9 +97,9 @@
                 $phpMailer->Body    = $partData["content"];
 
                 $phpMailer->send();
-                echo 'Message has been sent';
+
             } catch (\Exception $e) {
-                echo 'Message could not be sent. Mailer Error: ', $phpMailer->ErrorInfo;
+                throw new SmtpDeliveryException("Error on Smtp delivery",0, $e);
             }
         }
     }
